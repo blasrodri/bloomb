@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  bloomb:
+    container_name: bloomb
+    build: .
+    command: bash docker-entrypoint.sh
+    image: biosustain-gem-dev:5000/bloomb
+    links:
+      - mongo-bloomb
+    ports:
+      - 6060:6060
+    volumes:
+      - .:/bloomb
+
+  mongo-bloomb:
+    container_name: mongo-bloomb
+    image: mongo
+    ports:
+      - 27017:27017
